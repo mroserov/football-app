@@ -1,6 +1,6 @@
 # FootballApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
+[Football api](https://www.football-data.org/)
 
 ## Development server
 
