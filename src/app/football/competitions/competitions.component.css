@@ -16,7 +16,7 @@ table {
   margin: 3px;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 768px) {
   .content {
     margin: 10px;
   }

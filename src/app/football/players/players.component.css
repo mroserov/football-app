@@ -29,7 +29,7 @@ mat-card-title{
   margin: 10px;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 768px) {
   .content {
     margin: 10px 0 10px 0;
   }
