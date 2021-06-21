@@ -3,14 +3,22 @@
 }
 .player-card{
   margin: 10px;
-  max-width: 150px;
+  width: 150px;
 }
 
 .player-card-header{
   min-height: 60px;
 }
-
+.player-img{
+  margin-bottom: 10px;
+  width: 30px;
+  height: 30px;
+}
 mat-card-title{
+  text-align: center;
+}
+
+mat-card-content p {
   text-align: center;
 }
 .shirt-img {
@@ -35,7 +43,6 @@ mat-card-title{
   }
   .player-card{
     margin: 5px;
-    max-width: 150px;
   }
   .shirt-img {
     width: 90px;

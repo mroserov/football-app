@@ -16,6 +16,8 @@
       </div>
       <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         <p><strong>{{player.position}}</strong></p>
+        <img *ngIf="player.position" src="../../../assets/img/{{player.position}}.svg" class="player-img"
+             alt="{{player.position}}" width="25">
         <p>{{player.nationality}}</p>
       </mat-card-content>
     </mat-card>
