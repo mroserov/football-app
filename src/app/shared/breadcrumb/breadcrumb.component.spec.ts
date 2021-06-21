@@ -1,6 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NavigationEnd, Router} from '@angular/router';
+import {BreadcrumbComponent} from './breadcrumb.component';
+import {of} from 'rxjs';
 
-import { BreadcrumbComponent } from './breadcrumb.component';
+class MockServices {
+  // Router
+  public events = of(new NavigationEnd(0, 'http://localhost:4200/login', 'http://localhost:4200/login'));
+  public config = [];
+}
 
 describe('BreadcrumbComponent', () => {
   let component: BreadcrumbComponent;
@@ -8,9 +15,12 @@ describe('BreadcrumbComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BreadcrumbComponent ]
-    })
-    .compileComponents();
+      imports: [],
+      declarations: [BreadcrumbComponent],
+      providers: [
+        {provide: Router, useClass: MockServices}
+      ]
+    }).compileComponents();
   });
 
   beforeEach(() => {

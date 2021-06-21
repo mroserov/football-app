@@ -51,7 +51,7 @@ export class CompetitionsComponent implements OnInit, AfterViewInit {
       return dataStr.includes(filter);
     };
 
-    this.footballService.getCompetitions().subscribe((data) => {
+    this.footballService.getCompetitions().subscribe((data:Competition[]) => {
       this.competitions = data;
     });
   }
@@ -84,14 +84,6 @@ export class CompetitionsComponent implements OnInit, AfterViewInit {
    */
   doFilter($event: any): void {
     this.dataSource.filter = $event.target.value.trim().toLocaleLowerCase();
-  }
-
-  /**
-   * Open the teams of a specific competition
-   * @param competition competition object
-   */
-  openTeams(competition: Competition): void {
-    console.log(competition);
   }
 
   /**

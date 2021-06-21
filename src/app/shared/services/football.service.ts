@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {catchError, map} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
 import {Competition} from "../models/competition";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
@@ -12,7 +12,7 @@ import {Player} from "../models/player";
 })
 export class FootballService {
 
-  private readonly baseUrl = `${environment.apiUrl}competitions`;
+  baseUrl = `${environment.apiUrl}`;
 
   constructor(private readonly httpClient: HttpClient) {
   }
@@ -21,7 +21,7 @@ export class FootballService {
    * Get all competitions
    */
   getCompetitions(): Observable<Competition[]> {
-    return this.httpClient.get<Competition[]>(`${environment.apiUrl}competitions`)
+    return this.httpClient.get<Competition[]>(`${this.baseUrl}competitions`)
       .pipe(
         map((d: any) => {
           return d.competitions;
@@ -38,7 +38,7 @@ export class FootballService {
     const dateFrom = `${season}-01-01`;
     const dateTo = `${season}-01-01`;
     return this.httpClient
-      .get<Competition[]>(`${environment.apiUrl}competitions?dateFrom=${dateFrom}&dateTo=${dateTo}`)
+      .get<Competition[]>(`${this.baseUrl}competitions?dateFrom=${dateFrom}&dateTo=${dateTo}`)
       .pipe(
         map((d: any) => {
           return d.competitions;
@@ -47,7 +47,7 @@ export class FootballService {
   }
 
   getTeamsByCompetition(competitionId: number) {
-    return this.httpClient.get<Team[]>(`${environment.apiUrl}competitions\\${competitionId}\\teams`)
+    return this.httpClient.get<Team[]>(`${this.baseUrl}competitions\\${competitionId}\\teams`)
       .pipe(
         map((d: any) => {
           return d.teams;
@@ -56,7 +56,7 @@ export class FootballService {
   }
 
   getPlayersByTeam(teamId: number) {
-    return this.httpClient.get<Player[]>(`${environment.apiUrl}teams\\${teamId}`)
+    return this.httpClient.get<Player[]>(`${this.baseUrl}teams\\${teamId}`)
       .pipe(
         map((d: any) => {
           d.squad.map((s: Player) => {

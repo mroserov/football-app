@@ -1,11 +1,15 @@
 # FootballApp
-Football App permite mostrar los datos recolectados de [Football api](https://www.football-data.org/), para la parte de UI se una [Angular Material](https://material.angular.io/) y [Angular Flex Layout](https://www.npmjs.com/package/@angular/flex-layout)
+Football App allows to display the data collected from [Football api](https://www.football-data.org/), To UI [Angular Material](https://material.angular.io/) y [Angular Flex Layout](https://www.npmjs.com/package/@angular/flex-layout) will be used.
 
 Deploy in Heroku: [https://app-football.herokuapp.com/](https://app-football.herokuapp.com/)
+
+To test with data allowed with the free token use the **2018** season and the **FIFA World Cup** competition.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+Run `node express.js` for a dev server with express. Navigate to `http://localhost:8080/`
 
 ## Install
 
