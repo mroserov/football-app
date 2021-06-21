@@ -41,7 +41,7 @@ export class BreadcrumbComponent implements OnInit {
         let count = 0;
         breadcrumbs.map(e => {
           count++;
-          if (count > 1 && root.data.breadcrumb == 'Competitions') {
+          if (count > 1 && root.data.breadcrumb == 'Competitions' || count > 2 && root.data.breadcrumb == 'Teams') {
             e.show = false;
           }
           if (e.label === root.data.breadcrumb) {
@@ -56,5 +56,13 @@ export class BreadcrumbComponent implements OnInit {
       }
     });
     return breadcrumbs;
+  }
+
+  /**
+   * Filter breadcrumbs to show
+   * @param breadcrumbs
+   */
+  filterBreadcrumb(breadcrumbs: IBreadcrumb[]) {
+    return breadcrumbs?.filter(b => b.show);
   }
 }
