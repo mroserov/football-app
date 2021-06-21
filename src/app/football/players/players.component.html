@@ -3,7 +3,7 @@
      gdRows="60px auto"
      gdColumns="100%">
   <div gdArea="title" fxLayoutAlign="center">
-    <h1 *ngIf="players">{{players[0].team}}</h1>
+    <h1 *ngIf="players && players.length > 0">{{players[0].team}}</h1>
   </div>
   <div gdArea="court" fxLayoutAlign="center" fxLayout="row wrap">
     <mat-card *ngFor="let player of players" class="player-card">
