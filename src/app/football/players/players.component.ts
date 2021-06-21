@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {SubSink} from "subsink";
 import {FootballConstants} from "../football.constants";
 import {Player} from "../../shared/models/player";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-players',
@@ -25,7 +26,8 @@ export class PlayersComponent {
 
   constructor(private footballService: FootballService,
               private route: ActivatedRoute,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private location: Location) {
     this.sub.sink = this.route.params.subscribe(params => {
       this.teamId = +params['id'];
       this.route.data.subscribe(data => {
@@ -42,9 +44,14 @@ export class PlayersComponent {
   private getPlayersByTeams(id: number) {
     this.footballService.getPlayersByTeam(id).subscribe((data) => {
       this.players = data;
+      if(data.length===0){
+        this._snackBar.open(FootballConstants['emptyPlayers'], 'Close', {duration: 5000});
+        this.location.back();
+      }
     }, err => {
       // @ts-ignore
       this._snackBar.open(FootballConstants[err.error.errorCode], 'Close', {duration: 5000});
+      this.location.back();
     });
   }
 

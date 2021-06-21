@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, OnInit, ViewChild} from '@angular/core';
+import {Component, AfterViewInit, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {FootballService} from '../../shared/services/football.service';
 import {Competition} from "../../shared/models/competition";
 import {MatSort} from "@angular/material/sort";
@@ -30,6 +30,13 @@ export class CompetitionsComponent implements OnInit, AfterViewInit {
   competitions: Competition[] = [];
 
   /**
+   * Season to search
+   */
+  season: string = '';
+
+  @ViewChild("season") inputSeason!: ElementRef;
+
+  /**
    * Material sort
    */
   @ViewChild(MatSort) sort!: MatSort;
@@ -51,8 +58,10 @@ export class CompetitionsComponent implements OnInit, AfterViewInit {
       return dataStr.includes(filter);
     };
 
-    this.footballService.getCompetitions().subscribe((data:Competition[]) => {
+    this.footballService.getCompetitions().subscribe((data: Competition[]) => {
       this.competitions = data;
+      this.season = this.inputSeason.nativeElement.value = localStorage.getItem('season') || '';
+      this.getCompetitionsBySeason();
     });
   }
 
@@ -66,15 +75,16 @@ export class CompetitionsComponent implements OnInit, AfterViewInit {
 
   /**
    * Get competitions by season
-   * @param $event
+   * @param target
    */
-  getCompetitionsBySeason($event: any): void {
-    const season = $event.target.value.trim();
+  getCompetitionsBySeason(target: any = {value: this.season}): void {
+    this.season = target.value.trim();
+    localStorage.setItem('season', this.season);
     this.dataSource.data =
       this.competitions
         .filter(
-          data => season.length === 4
-            && (data?.currentSeason?.startDate?.includes(season) || data?.currentSeason?.endDate?.includes(season))
+          data => this.season.length === 4
+            && (data?.currentSeason?.startDate?.includes(this.season) || data?.currentSeason?.endDate?.includes(this.season))
         );
   }
 

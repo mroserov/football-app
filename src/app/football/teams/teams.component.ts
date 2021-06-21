@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SubSink} from 'subsink'
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FootballConstants} from "../football.constants";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-teams',
@@ -53,7 +54,8 @@ export class TeamsComponent implements AfterViewInit {
 
   constructor(private footballService: FootballService,
               private route: ActivatedRoute,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private location: Location) {
     this.sub.sink = this.route.params.subscribe(params => {
       this.competitionId = +params['id'];
       this.route.data.subscribe(data => {
@@ -86,9 +88,16 @@ export class TeamsComponent implements AfterViewInit {
   private getTeamsByCompetition(id: number) {
     this.footballService.getTeamsByCompetition(id).subscribe((data) => {
       this.dataSource.data = data;
+      if(data.length===0){
+        this._snackBar.open(FootballConstants['emptyTeams'], 'Close', {duration: 5000});
+        this.location.back();
+      }
     }, err => {
-      // @ts-ignore
-      this._snackBar.open(FootballConstants[err.error.errorCode], 'Close', {duration: 5000});
+      this._snackBar
+        // @ts-ignore
+        .open(`${FootballConstants[err.error.errorCode]} - ${FootballConstants['emptyTeams']}`,
+        'Close', {duration: 5000});
+      this.location.back();
     });
   }
 }
