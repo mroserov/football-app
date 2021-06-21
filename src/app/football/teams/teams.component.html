@@ -1,0 +1,56 @@
+<div class="content"
+     gdAreas="title | filters | table"
+     gdRows="60px 80px auto"
+     gdColumns="100%">
+
+  <div gdArea="title">
+    <h1>Teams</h1>
+  </div>
+
+  <div gdArea="filters" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="5px">
+    <mat-form-field *ngIf="dataSource.data.length>0">
+      <input matInput type="text" placeholder="Filter"
+             (keyup)="doFilter($event)">
+    </mat-form-field>
+  </div>
+
+  <div gdArea="table">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!--image-->
+      <ng-container matColumnDef="crestUrl">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            src="{{element.crestUrl || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}}"
+            class="img-comp">
+        </td>
+      </ng-container>
+      <!--name-->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+      <!--ensignUrl-->
+      <ng-container matColumnDef="area.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+        <td mat-cell *matCellDef="let element">{{element.area.name}}</td>
+      </ng-container>
+      <!--venue-->
+      <ng-container matColumnDef="venue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Venue</th>
+        <td mat-cell *matCellDef="let element">{{element.venue}}</td>
+      </ng-container>
+      <!--players-->
+      <ng-container matColumnDef="players">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button [routerLink]="['/competitions/teams/players', element.id]">Players</button>
+        </td>
+      </ng-container>
+      <!--Columns-->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10,20,50]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

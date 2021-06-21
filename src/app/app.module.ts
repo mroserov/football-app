@@ -8,15 +8,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./shared/material.module";
 import {ViewsModule} from "./shared/views.module";
 import {HeadersInterceptor} from "./core/interceptors/headers.interceptor";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {BreadcrumbComponent} from './shared/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FlexLayoutModule,
     MaterialModule,
     ViewsModule,
     BrowserAnimationsModule

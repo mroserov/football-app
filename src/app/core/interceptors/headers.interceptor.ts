@@ -15,7 +15,7 @@ export class HeadersInterceptor implements HttpInterceptor {
   }
 
   /**
-   * Intercept http request
+   * Intercept http request to set api token
    * @param request HttpRequest
    * @param next HttpHandler
    */

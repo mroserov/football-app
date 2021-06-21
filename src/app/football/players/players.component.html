@@ -1,0 +1,23 @@
+<div class="content"
+     gdAreas="title | court"
+     gdRows="60px auto"
+     gdColumns="100%">
+  <div gdArea="title" fxLayoutAlign="center">
+    <h1 *ngIf="players">{{players[0].team}}</h1>
+  </div>
+  <div gdArea="court" fxLayoutAlign="center" fxLayout="row wrap">
+    <mat-card *ngFor="let player of players" class="player-card">
+      <mat-card-header class="player-card-header" fxLayoutAlign="center center">
+        <mat-card-title>{{player.name}}</mat-card-title>
+      </mat-card-header>
+      <div class="shirt" fxLayoutAlign="center center">
+        <img mat-card-image src="assets/img/t_shirt.svg" alt="{{player.name}}" class="shirt-img">
+        <div class="shirt-num">{{player.shirtNumber}}</div>
+      </div>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <p><strong>{{player.position}}</strong></p>
+        <p>{{player.nationality}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

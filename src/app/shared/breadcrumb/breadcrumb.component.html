@@ -1,0 +1,11 @@
+<nav>
+  <ul>
+    <ng-container *ngFor="let breadcrumb of breadcrumbs;last as isLast">
+      <li *ngIf="breadcrumb.show">
+        <a routerLink="{{breadcrumb.url}}" routerLinkActive="router-link-active">
+          {{ breadcrumb.label }}
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</nav>

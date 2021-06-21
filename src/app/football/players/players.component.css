@@ -1,0 +1,30 @@
+.content{
+  margin: 25px 0 25px 0;
+}
+.player-card{
+  margin: 10px;
+  max-width: 150px;
+}
+
+.player-card-header{
+  min-height: 60px;
+}
+
+mat-card-title{
+  text-align: center;
+}
+.shirt-img {
+  width: 100px;
+  height: 100px;
+  margin: 3px;
+}
+
+.shirt-num {
+  position: absolute;
+  top: 44%;
+  font-size: 30px;
+}
+
+.shirt{
+  margin: 10px;
+}

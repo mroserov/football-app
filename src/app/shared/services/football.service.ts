@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {catchError, map} from "rxjs/operators";
-import {Competitions} from "../models/competitions";
+import {Competition} from "../models/competition";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {Team} from "../models/team";
+import {Player} from "../models/player";
 
 @Injectable({
   providedIn: 'root'
@@ -16,26 +18,52 @@ export class FootballService {
   }
 
   /**
-   *
-   * @param season
+   * Get all competitions
    */
-  getCompetitions(season: number): Observable<Competitions[]>{
-    return this.httpClient.get<Competitions[]>(`${this.baseUrl}`)
+  getCompetitions(): Observable<Competition[]> {
+    return this.httpClient.get<Competition[]>(`${environment.apiUrl}competitions`)
       .pipe(
-        map((d:any) => {
-          console.log(d.competitions[0]);
+        map((d: any) => {
           return d.competitions;
         })
       );
-      /*  catchError(this.handleError)
-      );(res: HttpResponse<any>) => {
-        const data = res.body;
-        return data;
-      });*/
-
   }
 
-  private handleError(err: HttpErrorResponse) {
-    console.log(err);
+  /**
+   * Get competitions by season
+   * TODO: With the free token it is not possible to consume the Api with date filters.
+   * @param season
+   */
+  getCompetitionsBySeason(season: number): Observable<Competition[]> {
+    const dateFrom = `${season}-01-01`;
+    const dateTo = `${season}-01-01`;
+    return this.httpClient
+      .get<Competition[]>(`${environment.apiUrl}competitions?dateFrom=${dateFrom}&dateTo=${dateTo}`)
+      .pipe(
+        map((d: any) => {
+          return d.competitions;
+        })
+      );
+  }
+
+  getTeamsByCompetition(competitionId: number) {
+    return this.httpClient.get<Team[]>(`${environment.apiUrl}competitions\\${competitionId}\\teams`)
+      .pipe(
+        map((d: any) => {
+          return d.teams;
+        })
+      );
+  }
+
+  getPlayersByTeam(teamId: number) {
+    return this.httpClient.get<Player[]>(`${environment.apiUrl}teams\\${teamId}`)
+      .pipe(
+        map((d: any) => {
+          d.squad.map((s: Player) => {
+            s.team = d.name;
+          })
+          return d.squad;
+        })
+      );
   }
 }
