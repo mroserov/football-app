@@ -23,3 +23,14 @@ li a {
 
 li a:hover {
 }
+
+@media screen and (max-width: 960px) {
+  nav {
+    margin-left: 0;
+  }
+  li a {
+    text-align: center;
+    padding: 5px;
+  }
+}
+

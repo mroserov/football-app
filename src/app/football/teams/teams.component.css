@@ -11,3 +11,37 @@ table {
   height: 45px;
   margin: 3px;
 }
+
+@media screen and (max-width: 960px) {
+  .content {
+    margin: 10px;
+  }
+
+  .img-comp {
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+  }
+
+  button {
+    font-size: 0.8rem;
+  }
+
+  .mat-table .mat-cell:nth-child(3), .mat-table .mat-header-cell:nth-child(3) {
+    display: none;
+  }
+
+  .mat-table .mat-cell:first-child {
+    padding-right: 8px;
+    padding-left: 0;
+  }
+
+  .mat-table .mat-cell:last-child {
+    padding-right: 0;
+    padding-left: 5px;
+  }
+
+  .mat-table .mat-cell {
+    font-size: .8rem;
+  }
+}

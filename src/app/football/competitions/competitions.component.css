@@ -15,3 +15,22 @@ table {
   height: 45px;
   margin: 3px;
 }
+
+@media screen and (max-width: 960px) {
+  .content {
+    margin: 10px;
+  }
+  button{
+    font-size: 0.8rem;
+  }
+  .img-comp , .mat-table .mat-cell:first-child, .mat-table .mat-header-cell:first-child {
+    display: none;
+  }
+  .mat-table .mat-cell:last-child{
+    padding-right: 0;
+    padding-left: 10px;
+  }
+  .mat-table .mat-cell {
+    font-size: .8rem;
+  }
+}

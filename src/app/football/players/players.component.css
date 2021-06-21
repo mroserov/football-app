@@ -28,3 +28,24 @@ mat-card-title{
 .shirt{
   margin: 10px;
 }
+
+@media screen and (max-width: 960px) {
+  .content {
+    margin: 10px 0 10px 0;
+  }
+  .player-card{
+    margin: 5px;
+    max-width: 150px;
+  }
+  .shirt-img {
+    width: 90px;
+    height: 90px;
+    margin: 3px;
+  }
+  .shirt-num {
+    font-size: 25px;
+  }
+  mat-card{
+    padding: 10px;
+  }
+}
