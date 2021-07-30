@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "heroku-postbuild": "ng build --prod"
+    "deploy": "ng build --prod --base-href=/football-app/"
   },
   "private": true,
   "dependencies": {
