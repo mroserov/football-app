@@ -20,17 +20,26 @@ table {
   .content {
     margin: 10px;
   }
-  button{
+
+  button {
     font-size: 0.8rem;
   }
-  .img-comp , .mat-table .mat-cell:first-child, .mat-table .mat-header-cell:first-child {
+
+  .img-comp, .mat-table .mat-cell:first-child, .mat-table .mat-header-cell:first-child {
     display: none;
   }
-  .mat-table .mat-cell:last-child{
+
+  .mat-table .mat-cell:last-child {
     padding-right: 0;
-    padding-left: 10px;
+    padding-left: 0;
   }
+
   .mat-table .mat-cell {
     font-size: .8rem;
+    padding-right: 5px;
+  }
+
+  .mat-header-cell {
+    text-align: center;
   }
 }
